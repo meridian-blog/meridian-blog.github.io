@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meridian — Zero-Fee Publishing Platform</title>
+  <meta name="description" content="Self-hosted, zero-platform-fee publishing infrastructure. Own your content, own your audience, keep 100% of your revenue.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="nav-logo-mark">M</span> Meridian</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#comparison">Compare</a></li>
+        <li><a href="#deploy">Deploy</a></li>
+        <li><a href="docs.html">Docs</a></li>
+        <li><a href="https://github.com/meridian-blog/meridian" class="btn btn-secondary" style="padding:8px 16px;">GitHub</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-label">Open Source Publishing Platform</p>
+        <h1 class="hero-title">Publish on your terms.<br>Keep every dollar.</h1>
+        <p class="hero-subtitle">
+          Meridian is a self-hosted blog engine with memberships, newsletters, and growth tools built in. Zero platform fees. No vendor lock-in. Just your words, your audience, your revenue.
+        </p>
+        <div class="hero-actions">
+          <a href="#deploy" class="btn btn-primary">Deploy Now</a>
+          <a href="docs.html" class="btn btn-secondary">Read the Docs</a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-value">0%</span>
+            <span class="hero-meta-label">Platform Fee</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-value">&lt;0.6s</span>
+            <span class="hero-meta-label">Median Load</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-value">MIT</span>
+            <span class="hero-meta-label">License</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-value">150KB</span>
+            <span class="hero-meta-label">Core Payload</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Screenshot / Preview ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="image-placeholder" data-label="Meridian Dashboard Screenshot" style="max-width:960px;margin:0 auto;aspect-ratio:16/9;border-radius:3px;"></div>
+    </div>
+  </section>
+
+  <!-- ===== Stats Bar ===== -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Revenue Retained</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">&lt;100ms</span>
+          <span class="stat-label">Edge TTFB</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">15min</span>
+          <span class="stat-label">Migration Time</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">98%+</span>
+          <span class="stat-label">Email Deliverability</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Features ===== -->
+  <section id="features">
+
+    <!-- Feature 1: Publishing -->
+    <div class="feature-block">
+      <div class="container grid-golden">
+        <div>
+          <p class="feature-label">Publishing</p>
+          <h2 class="feature-title">A writing environment that disappears</h2>
+          <p class="feature-desc">
+            Block-based editor with real-time collaboration, version history, and an AI refinement panel. Write in "Void" mode for distraction-free composing — all chrome fades, leaving only your words.
+          </p>
+          <ul class="feature-list">
+            <li>Block-based content stored as structured JSON</li>
+            <li>Drag-and-drop contextual paywalls</li>
+            <li>Git-like version control with visual diff</li>
+            <li>Inline toolbar on text selection</li>
+            <li>Slash commands for block insertion</li>
+          </ul>
+        </div>
+        <div class="image-placeholder" data-label="Editor Interface"></div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Memberships -->
+    <div class="feature-block">
+      <div class="container grid-golden-reverse">
+        <div class="image-placeholder" data-label="Membership Dashboard"></div>
+        <div>
+          <p class="feature-label">Memberships</p>
+          <h2 class="feature-title">Subscriptions without the platform tax</h2>
+          <p class="feature-desc">
+            Connect your own Stripe account. Free, premium, and custom tiers with dynamic visibility rules. Members pay you directly — Meridian takes nothing.
+          </p>
+          <ul class="feature-list">
+            <li>Multi-processor support (Stripe, PayPal, Razorpay)</li>
+            <li>Dynamic access rules based on tenure and engagement</li>
+            <li>Automatic Stripe Product/Price creation</li>
+            <li>Customer portal for self-service billing</li>
+            <li>Regional payment routing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Newsletters -->
+    <div class="feature-block">
+      <div class="container grid-golden">
+        <div>
+          <p class="feature-label">Newsletters</p>
+          <h2 class="feature-title">Send to your audience, not through a middleman</h2>
+          <p class="feature-desc">
+            Built-in newsletter engine with visual automation workflows, segment targeting, and deliverability optimization. BIMI/DMARC/DKIM enforcement out of the box.
+          </p>
+          <ul class="feature-list">
+            <li>Visual workflow builder for automations</li>
+            <li>Welcome sequences, win-back campaigns</li>
+            <li>Dedicated IP warming automation</li>
+            <li>Gmail/Yahoo 2024 compliance built-in</li>
+            <li>Send via Resend, Postmark, or any provider</li>
+          </ul>
+        </div>
+        <div class="image-placeholder" data-label="Newsletter Composer"></div>
+      </div>
+    </div>
+
+    <!-- Feature 4: Growth -->
+    <div class="feature-block">
+      <div class="container grid-golden-reverse">
+        <div class="image-placeholder" data-label="Referral Dashboard"></div>
+        <div>
+          <p class="feature-label">Growth Tools</p>
+          <h2 class="feature-title">Native referral and viral infrastructure</h2>
+          <p class="feature-desc">
+            Tiered referral programs, embeddable subscribe buttons, social proof badges, and one-click subscribe endpoints. Growth tooling that rivals Beehiiv — self-hosted.
+          </p>
+          <ul class="feature-list">
+            <li>Tiered and milestone-based referral rewards</li>
+            <li>Embeddable buttons and web components</li>
+            <li>Live subscriber count badges</li>
+            <li>UTM + cookie attribution tracking</li>
+            <li>AI-powered content resurrection for SEO</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 5: Analytics -->
+    <div class="feature-block">
+      <div class="container grid-golden">
+        <div>
+          <p class="feature-label">Analytics</p>
+          <h2 class="feature-title">Privacy-first insights, not surveillance</h2>
+          <p class="feature-desc">
+            First-party analytics with churn prediction, LTV forecasting, and content velocity metrics. No Google Analytics dependency. Your data stays on your infrastructure.
+          </p>
+          <ul class="feature-list">
+            <li>Real-time dashboard with sparklines</li>
+            <li>30-day churn prediction ML model</li>
+            <li>Cohort-based LTV forecasting</li>
+            <li>Anonymized peer benchmarking</li>
+            <li>SQL interface for custom reports</li>
+          </ul>
+        </div>
+        <div class="image-placeholder" data-label="Analytics Dashboard"></div>
+      </div>
+    </div>
+
+    <!-- Feature 6: Migration -->
+    <div class="feature-block">
+      <div class="container grid-golden-reverse">
+        <div class="image-placeholder image-placeholder-4-3" data-label="Migration Tool"></div>
+        <div>
+          <p class="feature-label">Migration</p>
+          <h2 class="feature-title">Switch in minutes, not months</h2>
+          <p class="feature-desc">
+            One-click importers for WordPress, Ghost, Substack, and Medium. Automatic SEO redirect generation preserves your search rankings during the move.
+          </p>
+          <ul class="feature-list">
+            <li>WordPress WXR parsing with media transfer</li>
+            <li>Ghost JSON API direct sync</li>
+            <li>Substack subscriber + post import</li>
+            <li>Automatic .htaccess / Nginx redirect rules</li>
+            <li>Jekyll/Atom RSS feed importer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Comparison ===== -->
+  <section id="comparison" class="section">
+    <div class="container">
+      <p class="feature-label" style="text-align:center;">How we compare</p>
+      <h2 style="text-align:center;font-size:clamp(1.6rem,3vw,2rem);margin-bottom:var(--space-lg);">Meridian vs. the alternatives</h2>
+
+      <div style="overflow-x:auto;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="highlight">Meridian</th>
+              <th>Ghost</th>
+              <th>Substack</th>
+              <th>WordPress</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Platform Fee</td>
+              <td class="highlight"><span class="check">0%</span></td>
+              <td><span class="check">0%</span></td>
+              <td>10%</td>
+              <td>Varies by host</td>
+            </tr>
+            <tr>
+              <td>Self-Hosted</td>
+              <td class="highlight"><span class="check">Yes</span></td>
+              <td><span class="check">Yes</span></td>
+              <td><span class="cross">No</span></td>
+              <td><span class="check">Yes</span></td>
+            </tr>
+            <tr>
+              <td>Native Newsletters</td>
+              <td class="highlight"><span class="check">Yes</span></td>
+              <td><span class="check">Yes</span></td>
+              <td><span class="check">Yes</span></td>
+              <td>Plugin required</td>
+            </tr>
+            <tr>
+              <td>Referral Program</td>
+              <td class="highlight"><span class="check">Built-in</span></td>
+              <td><span class="cross">No</span></td>
+              <td><span class="cross">No</span></td>
+              <td>Plugin required</td>
+            </tr>
+            <tr>
+              <td>Multi-Payment Processor</td>
+              <td class="highlight"><span class="check">Stripe, PayPal, Razorpay</span></td>
+              <td>Stripe only</td>
+              <td>Stripe only</td>
+              <td>Plugin required</td>
+            </tr>
+            <tr>
+              <td>AI Content Tools</td>
+              <td class="highlight"><span class="check">Native</span></td>
+              <td><span class="cross">No</span></td>
+              <td><span class="cross">No</span></td>
+              <td>Plugin required</td>
+            </tr>
+            <tr>
+              <td>Edge-First Performance</td>
+              <td class="highlight"><span class="check">&lt;100ms TTFB</span></td>
+              <td>Varies</td>
+              <td>Varies</td>
+              <td>Slow by default</td>
+            </tr>
+            <tr>
+              <td>Core Payload</td>
+              <td class="highlight"><span class="check">&lt;150KB</span></td>
+              <td>~300KB</td>
+              <td>~1MB+</td>
+              <td>Varies widely</td>
+            </tr>
+            <tr>
+              <td>Open Source</td>
+              <td class="highlight"><span class="check">MIT</span></td>
+              <td><span class="check">MIT</span></td>
+              <td><span class="cross">No</span></td>
+              <td><span class="check">GPL</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Deploy ===== -->
+  <section id="deploy" class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <p class="feature-label">Deploy</p>
+      <h2 style="font-size:clamp(1.6rem,3vw,2rem);margin-bottom:var(--space-sm);">Up and running in minutes</h2>
+      <p style="color:var(--text-secondary);max-width:540px;margin-bottom:var(--space-base);">
+        One-click deploy to your preferred platform, or self-host with Docker. All you need is a PostgreSQL database.
+      </p>
+
+      <div class="deploy-grid">
+        <!-- Railway -->
+        <div class="deploy-card">
+          <div class="deploy-card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="12" rx="2"/>
+              <path d="M6 12h12"/>
+              <path d="M12 6v12"/>
+            </svg>
+            <span>Railway</span>
+          </div>
+          <p>One-click deploy with managed PostgreSQL and Redis. Automatic SSL and custom domains.</p>
+          <a href="#" class="btn btn-deploy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Deploy on Railway
+          </a>
+        </div>
+
+        <!-- Fly.io -->
+        <div class="deploy-card">
+          <div class="deploy-card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+            <span>Fly.io</span>
+          </div>
+          <p>Deploy globally on Fly Machines with automatic scaling and edge routing. Add Fly Postgres in one command.</p>
+          <a href="#" class="btn btn-deploy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Deploy on Fly.io
+          </a>
+        </div>
+
+        <!-- Render -->
+        <div class="deploy-card">
+          <div class="deploy-card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 12l3 3 5-5"/>
+            </svg>
+            <span>Render</span>
+          </div>
+          <p>Auto-deploy from GitHub with free managed PostgreSQL. Great for getting started at no cost.</p>
+          <a href="#" class="btn btn-deploy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Deploy on Render
+          </a>
+        </div>
+
+        <!-- Docker -->
+        <div class="deploy-card">
+          <div class="deploy-card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="8" width="4" height="4"/>
+              <rect x="9" y="8" width="4" height="4"/>
+              <rect x="15" y="8" width="4" height="4"/>
+              <rect x="9" y="2" width="4" height="4"/>
+              <path d="M1 14c2 4 6 6 11 6s9-2 11-6"/>
+            </svg>
+            <span>Docker</span>
+          </div>
+          <p>Run anywhere with Docker Compose. PostgreSQL, Redis, and the app — all configured and ready.</p>
+          <a href="docs.html#docker" class="btn btn-deploy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            View Docker Guide
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Start Code -->
+      <div style="margin-top:var(--space-xl);">
+        <h3 style="margin-bottom:var(--space-base);">Quick start with Docker</h3>
+        <div class="code-block">
+<span class="prompt">$</span> git clone https://github.com/meridian-blog/meridian.git
+<span class="prompt">$</span> cd meridian
+<span class="prompt">$</span> cp .env.example .env   <span class="comment"># Edit with your settings</span>
+<span class="prompt">$</span> make dev               <span class="comment"># Starts PostgreSQL + Redis + App</span>
+
+<span class="comment"># Open http://localhost:8000 — that's it.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Testimonials (Placeholder) ===== -->
+  <section class="testimonial">
+    <div class="container">
+      <p class="feature-label" style="text-align:center;margin-bottom:var(--space-lg);">What creators say</p>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <blockquote>"Switching from Substack saved us $2,400/month in platform fees. Meridian paid for itself before we finished the migration."</blockquote>
+          <cite>
+            <div class="cite-avatar"></div>
+            <span>Placeholder Name, Publication</span>
+          </cite>
+        </div>
+        <div class="testimonial-card">
+          <blockquote>"The referral system alone doubled our subscriber growth in three months. And it's all self-hosted — no data leaves our servers."</blockquote>
+          <cite>
+            <div class="cite-avatar"></div>
+            <span>Placeholder Name, Publication</span>
+          </cite>
+        </div>
+        <div class="testimonial-card">
+          <blockquote>"Finally, a publishing platform that treats performance as a feature, not an afterthought. Sub-100ms pages, globally."</blockquote>
+          <cite>
+            <div class="cite-avatar"></div>
+            <span>Placeholder Name, Publication</span>
+          </cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Pricing (Self-Hosted = Free) ===== -->
+  <section class="section">
+    <div class="container">
+      <p class="feature-label" style="text-align:center;">Pricing</p>
+      <h2 style="text-align:center;font-size:clamp(1.6rem,3vw,2rem);margin-bottom:var(--space-sm);">Free forever. Seriously.</h2>
+      <p style="text-align:center;color:var(--text-secondary);max-width:480px;margin:0 auto;">
+        Meridian is open source under the MIT license. Self-host it for free. We'll offer managed hosting for those who prefer it.
+      </p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card featured">
+          <h3>Self-Hosted</h3>
+          <div class="pricing-price">$0 <span>/ forever</span></div>
+          <p class="pricing-desc">Full platform, no limits, no fees.</p>
+          <ul class="pricing-features">
+            <li>Unlimited posts and pages</li>
+            <li>Unlimited members</li>
+            <li>Newsletters and automations</li>
+            <li>Referral and growth tools</li>
+            <li>All payment processors</li>
+            <li>Full API and GraphQL access</li>
+            <li>Community support</li>
+          </ul>
+          <a href="docs.html" class="btn btn-primary">Get Started</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Managed Cloud</h3>
+          <div class="pricing-price">$9 <span>/ month</span></div>
+          <p class="pricing-desc">We handle hosting, backups, and updates.</p>
+          <ul class="pricing-features">
+            <li>Everything in Self-Hosted</li>
+            <li>Managed PostgreSQL and Redis</li>
+            <li>Automatic updates</li>
+            <li>Daily backups</li>
+            <li>Custom domain + SSL</li>
+            <li>Email sending included</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="#" class="btn btn-secondary">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <h2>Own your platform.<br>Own your revenue.</h2>
+      <p>Start publishing with Meridian in under 15 minutes. No credit card, no platform fees, no strings attached.</p>
+      <div style="display:flex;gap:var(--space-base);justify-content:center;flex-wrap:wrap;">
+        <a href="#deploy" class="btn btn-primary">Deploy Now</a>
+        <a href="https://github.com/meridian-blog/meridian" class="btn btn-secondary">Star on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="nav-logo-mark">M</span> Meridian</a>
+          <p>Zero-fee publishing infrastructure.<br>Open source. Self-hosted. Yours.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#comparison">Compare</a></li>
+            <li><a href="#deploy">Deploy</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="docs.html">Self-Hosting Guide</a></li>
+            <li><a href="docs.html#api">API Reference</a></li>
+            <li><a href="docs.html#migration">Migration Guide</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="https://github.com/meridian-blog/meridian">GitHub</a></li>
+            <li><a href="#">Discord</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>MIT License. Built with care.</span>
+        <span>Meridian Blog Engine</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile nav toggle -->
+  <script>
+    document.getElementById('mobileToggle').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

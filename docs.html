@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — Meridian</title>
+  <meta name="description" content="Self-hosting guide, API reference, and migration documentation for Meridian blog engine.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="nav-logo-mark">M</span> Meridian</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#comparison">Compare</a></li>
+        <li><a href="index.html#deploy">Deploy</a></li>
+        <li><a href="docs.html" class="active">Docs</a></li>
+        <li><a href="https://github.com/meridian-blog/meridian" class="btn btn-secondary" style="padding:8px 16px;">GitHub</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== Docs Layout ===== -->
+  <div class="container" style="padding-top:calc(60px + var(--space-xl));padding-bottom:var(--space-xxl);">
+    <div class="grid-golden-reverse" style="gap:var(--space-xl);">
+
+      <!-- Sidebar Nav -->
+      <aside class="docs-nav">
+        <ul>
+          <li><a href="#quickstart" class="active">Quick Start</a></li>
+          <li><a href="#docker">Docker</a></li>
+          <li><a href="#local-deno">Local (Deno)</a></li>
+          <li><a href="#configuration">Configuration</a></li>
+          <li><a href="#stripe-setup">Stripe Setup</a></li>
+          <li><a href="#email-setup">Email Setup</a></li>
+          <li><a href="#railway">Railway Deploy</a></li>
+          <li><a href="#flyio">Fly.io Deploy</a></li>
+          <li><a href="#render">Render Deploy</a></li>
+          <li><a href="#migration">Migration</a></li>
+          <li><a href="#api">API Reference</a></li>
+          <li><a href="#themes">Themes</a></li>
+          <li><a href="#updating">Updating</a></li>
+        </ul>
+      </aside>
+
+      <!-- Docs Content -->
+      <main class="docs-content">
+
+        <!-- Quick Start -->
+        <h2 id="quickstart">Quick Start</h2>
+        <p>
+          Meridian requires <strong>PostgreSQL 16</strong> and optionally <strong>Redis</strong> for caching. The fastest way to get started is Docker Compose, which handles everything for you.
+        </p>
+
+        <div class="callout">
+          <p><strong>Prerequisites:</strong> Docker and Docker Compose installed, or Deno 2.x and PostgreSQL 16 for local development.</p>
+        </div>
+
+        <div class="code-block">
+<span class="prompt">$</span> git clone https://github.com/meridian-blog/meridian.git
+<span class="prompt">$</span> cd meridian
+<span class="prompt">$</span> cp .env.example .env
+<span class="prompt">$</span> make dev
+        </div>
+
+        <p>
+          Open <code>http://localhost:8000</code> and log in with the default admin credentials. Change these immediately in production.
+        </p>
+
+        <table>
+          <thead>
+            <tr><th>Setting</th><th>Default</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Admin Email</td><td><code>admin@meridian.blog</code></td></tr>
+            <tr><td>Admin Password</td><td><code>changeme123</code></td></tr>
+            <tr><td>App Port</td><td><code>8000</code></td></tr>
+          </tbody>
+        </table>
+
+        <!-- Docker -->
+        <h2 id="docker">Docker Deployment</h2>
+        <p>
+          The included <code>docker-compose.yml</code> sets up PostgreSQL, Redis, and the Meridian app. This is the recommended way to run Meridian in production.
+        </p>
+
+        <h3>Production Setup</h3>
+        <div class="code-block">
+<span class="comment"># Clone and configure</span>
+<span class="prompt">$</span> git clone https://github.com/meridian-blog/meridian.git
+<span class="prompt">$</span> cd meridian
+<span class="prompt">$</span> cp .env.example .env
+
+<span class="comment"># Edit .env with production values</span>
+<span class="prompt">$</span> nano .env
+
+<span class="comment"># Start in production mode</span>
+<span class="prompt">$</span> docker compose up -d
+
+<span class="comment"># View logs</span>
+<span class="prompt">$</span> docker compose logs -f app
+        </div>
+
+        <h3>Docker Commands</h3>
+        <table>
+          <thead>
+            <tr><th>Command</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>make dev</code></td><td>Start all services (development)</td></tr>
+            <tr><td><code>make stop</code></td><td>Stop all services</td></tr>
+            <tr><td><code>make logs</code></td><td>Tail application logs</td></tr>
+            <tr><td><code>make db-shell</code></td><td>Open PostgreSQL shell</td></tr>
+            <tr><td><code>make db-reset</code></td><td>Reset database (destroys all data)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-warn">
+          <p><strong>Warning:</strong> <code>make db-reset</code> destroys all data. Always back up your database before running this in production.</p>
+        </div>
+
+        <!-- Local Deno -->
+        <h2 id="local-deno">Local Development (Deno)</h2>
+        <p>
+          If you prefer running without Docker, install <a href="https://deno.land" style="text-decoration:underline;">Deno 2.x</a> and have a PostgreSQL 16 instance available.
+        </p>
+
+        <div class="code-block">
+<span class="comment"># Install Deno (macOS/Linux)</span>
+<span class="prompt">$</span> curl -fsSL https://deno.land/install.sh | sh
+
+<span class="comment"># Configure</span>
+<span class="prompt">$</span> cp .env.example .env
+<span class="comment"># Edit DATABASE_URL to point to your PostgreSQL</span>
+
+<span class="comment"># Run migrations and seed admin user</span>
+<span class="prompt">$</span> deno task db:migrate
+
+<span class="comment"># Start dev server with hot reload</span>
+<span class="prompt">$</span> deno task dev
+        </div>
+
+        <h3>Development Commands</h3>
+        <table>
+          <thead>
+            <tr><th>Command</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>deno task dev</code></td><td>Dev server with hot reload</td></tr>
+            <tr><td><code>deno task test</code></td><td>Run all tests</td></tr>
+            <tr><td><code>deno task db:migrate</code></td><td>Run database migrations</td></tr>
+            <tr><td><code>deno task db:seed</code></td><td>Seed sample content</td></tr>
+            <tr><td><code>deno fmt</code></td><td>Format code</td></tr>
+            <tr><td><code>deno lint</code></td><td>Lint code</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Configuration -->
+        <h2 id="configuration">Configuration</h2>
+        <p>
+          All configuration is via environment variables. Copy <code>.env.example</code> to <code>.env</code> and edit as needed.
+        </p>
+
+        <h3>Required Variables</h3>
+        <div class="code-block">
+<span class="comment"># Admin credentials (used during first migration)</span>
+ADMIN_EMAIL=<span class="string">admin@meridian.blog</span>
+ADMIN_PASSWORD=<span class="string">your-secure-password</span>
+ADMIN_NAME=<span class="string">Admin</span>
+
+<span class="comment"># Application secret (minimum 32 characters)</span>
+APP_SECRET=<span class="string">change-this-to-a-random-string</span>
+
+<span class="comment"># Database connection</span>
+DATABASE_URL=<span class="string">postgres://meridian:secret@localhost:5432/meridian</span>
+        </div>
+
+        <h3>Optional Variables</h3>
+        <div class="code-block">
+<span class="comment"># Payments</span>
+STRIPE_SECRET_KEY=<span class="string">sk_live_...</span>
+STRIPE_WEBHOOK_SECRET=<span class="string">whsec_...</span>
+
+<span class="comment"># Email (for newsletters)</span>
+EMAIL_PROVIDER=<span class="string">resend</span>
+EMAIL_API_KEY=<span class="string">re_...</span>
+EMAIL_FROM=<span class="string">newsletter@yourdomain.com</span>
+
+<span class="comment"># Redis (optional, for caching)</span>
+REDIS_URL=<span class="string">redis://localhost:6379</span>
+        </div>
+
+        <div class="callout callout-success">
+          <p><strong>Tip:</strong> Without email configured, newsletters log to console — useful for local development.</p>
+        </div>
+
+        <!-- Stripe -->
+        <h2 id="stripe-setup">Stripe Setup</h2>
+        <p>
+          Meridian integrates with Stripe for member subscriptions. You connect your own Stripe account and keep 100% of revenue (minus Stripe's standard processing fees).
+        </p>
+
+        <ul>
+          <li>Create a <a href="https://stripe.com" style="text-decoration:underline;">Stripe</a> account</li>
+          <li>Add your <code>STRIPE_SECRET_KEY</code> to <code>.env</code></li>
+          <li>Create subscription tiers in the Meridian admin dashboard</li>
+          <li>Set up a webhook endpoint at <code>https://yourdomain.com/api/stripe/webhook</code></li>
+          <li>Subscribe to events: <code>checkout.session.completed</code>, <code>customer.subscription.updated</code>, <code>customer.subscription.deleted</code>, <code>invoice.payment_failed</code></li>
+          <li>Add the <code>STRIPE_WEBHOOK_SECRET</code> to <code>.env</code></li>
+        </ul>
+
+        <p>
+          Meridian auto-creates Stripe Products and Prices from your tiers — no manual Stripe dashboard configuration needed beyond the initial API key setup.
+        </p>
+
+        <!-- Email -->
+        <h2 id="email-setup">Email Setup</h2>
+        <p>
+          Meridian supports multiple email providers for sending newsletters. Resend is recommended for its developer experience and deliverability.
+        </p>
+
+        <ul>
+          <li>Create a <a href="https://resend.com" style="text-decoration:underline;">Resend</a> account and verify your domain</li>
+          <li>Set <code>EMAIL_PROVIDER=resend</code> in your <code>.env</code></li>
+          <li>Add your <code>EMAIL_API_KEY</code></li>
+          <li>Set <code>EMAIL_FROM</code> to your verified sender address</li>
+        </ul>
+
+        <div class="callout">
+          <p><strong>Deliverability:</strong> Meridian enforces DKIM/DMARC/SPF and includes one-click unsubscribe headers for Gmail/Yahoo compliance.</p>
+        </div>
+
+        <!-- Railway -->
+        <h2 id="railway">Deploy to Railway</h2>
+        <p>
+          Railway provides the simplest deployment experience with managed PostgreSQL and automatic SSL.
+        </p>
+
+        <ul>
+          <li>Click the "Deploy on Railway" button on our GitHub repo</li>
+          <li>Railway auto-provisions PostgreSQL and Redis</li>
+          <li>Set your environment variables in the Railway dashboard</li>
+          <li>Add a custom domain (optional, Railway provides a free subdomain)</li>
+        </ul>
+
+        <div class="code-block">
+<span class="comment"># Or deploy via Railway CLI</span>
+<span class="prompt">$</span> railway login
+<span class="prompt">$</span> railway init
+<span class="prompt">$</span> railway add --plugin postgresql
+<span class="prompt">$</span> railway up
+        </div>
+
+        <div class="callout callout-success">
+          <p><strong>Estimated cost:</strong> Railway's Hobby plan ($5/mo) is sufficient for most publications under 10,000 monthly views.</p>
+        </div>
+
+        <!-- Fly.io -->
+        <h2 id="flyio">Deploy to Fly.io</h2>
+        <p>
+          Fly.io deploys your app globally on micro-VMs with automatic edge routing. Great for publications with a global audience.
+        </p>
+
+        <div class="code-block">
+<span class="comment"># Install Fly CLI</span>
+<span class="prompt">$</span> curl -L https://fly.io/install.sh | sh
+
+<span class="comment"># Launch the app</span>
+<span class="prompt">$</span> fly launch
+
+<span class="comment"># Create a PostgreSQL database</span>
+<span class="prompt">$</span> fly postgres create
+<span class="prompt">$</span> fly postgres attach
+
+<span class="comment"># Set environment variables</span>
+<span class="prompt">$</span> fly secrets set APP_SECRET=<span class="string">"your-secret-here"</span>
+<span class="prompt">$</span> fly secrets set ADMIN_EMAIL=<span class="string">"admin@yourdomain.com"</span>
+<span class="prompt">$</span> fly secrets set ADMIN_PASSWORD=<span class="string">"your-secure-password"</span>
+
+<span class="comment"># Deploy</span>
+<span class="prompt">$</span> fly deploy
+        </div>
+
+        <!-- Render -->
+        <h2 id="render">Deploy to Render</h2>
+        <p>
+          Render auto-deploys from GitHub and offers a free PostgreSQL tier — ideal for getting started at no cost.
+        </p>
+
+        <ul>
+          <li>Fork the Meridian repository on GitHub</li>
+          <li>Create a new Web Service on Render, connected to your fork</li>
+          <li>Add a PostgreSQL database (free tier available)</li>
+          <li>Set environment variables in the Render dashboard</li>
+          <li>Render auto-deploys on every push to <code>main</code></li>
+        </ul>
+
+        <div class="callout">
+          <p><strong>Note:</strong> Render's free PostgreSQL tier expires after 90 days. Upgrade to a paid tier for production use.</p>
+        </div>
+
+        <!-- Migration -->
+        <h2 id="migration">Migration Guide</h2>
+        <p>
+          Meridian includes one-click importers for major platforms. All migrations preserve your content, tags, and SEO structure.
+        </p>
+
+        <h3>From WordPress</h3>
+        <p>Export your WordPress site as WXR (Tools &rarr; Export &rarr; All content) and import via the admin dashboard or CLI.</p>
+
+        <h3>From Ghost</h3>
+        <p>Use Ghost's JSON export (Settings &rarr; Labs &rarr; Export) and import directly into Meridian.</p>
+
+        <h3>From Substack</h3>
+        <p>Request your data export from Substack settings. Meridian imports posts, subscribers, and can assist with Stripe Connect migration.</p>
+
+        <h3>From Jekyll / RSS</h3>
+        <div class="code-block">
+<span class="comment"># Preview what will be imported</span>
+<span class="prompt">$</span> deno task import:jekyll https://yourblog.com/feed.xml --dry-run
+
+<span class="comment"># Run the import</span>
+<span class="prompt">$</span> deno task import:jekyll https://yourblog.com/feed.xml
+        </div>
+
+        <h3>SEO Redirect Generation</h3>
+        <p>
+          After migration, Meridian auto-generates redirect rules to preserve your search rankings. Download the generated <code>.htaccess</code> or Nginx config from the admin dashboard.
+        </p>
+
+        <!-- API -->
+        <h2 id="api">API Reference</h2>
+        <p>
+          Meridian exposes a REST API for all operations and a GraphQL endpoint for content queries.
+        </p>
+
+        <h3>Public Endpoints (No Auth)</h3>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GET</td><td><code>/api/public/site</code></td><td>Site settings and social links</td></tr>
+            <tr><td>GET</td><td><code>/api/public/posts</code></td><td>Published posts (paginated)</td></tr>
+            <tr><td>GET</td><td><code>/api/public/posts/:slug</code></td><td>Single post by slug</td></tr>
+            <tr><td>GET</td><td><code>/api/public/tags</code></td><td>All tags with post counts</td></tr>
+            <tr><td>GET</td><td><code>/api/public/pages/:slug</code></td><td>Static page</td></tr>
+            <tr><td>GET</td><td><code>/api/public/search?q=</code></td><td>Full-text search</td></tr>
+            <tr><td>GET</td><td><code>/api/public/rss</code></td><td>RSS 2.0 feed</td></tr>
+            <tr><td>POST</td><td><code>/api/public/subscribe</code></td><td>Newsletter signup</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Admin Endpoints (JWT Required)</h3>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GET/POST</td><td><code>/api/posts</code></td><td>List or create posts</td></tr>
+            <tr><td>PUT/DELETE</td><td><code>/api/posts/:id</code></td><td>Update or delete a post</td></tr>
+            <tr><td>GET/POST</td><td><code>/api/pages</code></td><td>List or create pages</td></tr>
+            <tr><td>GET</td><td><code>/api/members</code></td><td>List members</td></tr>
+            <tr><td>POST</td><td><code>/api/newsletters/:id/send</code></td><td>Send a newsletter</td></tr>
+            <tr><td>GET</td><td><code>/api/analytics/dashboard</code></td><td>Dashboard statistics</td></tr>
+            <tr><td>GET/PUT</td><td><code>/api/settings</code></td><td>Site settings</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Stripe Endpoints</h3>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GET</td><td><code>/api/stripe/tiers</code></td><td>Active subscription tiers</td></tr>
+            <tr><td>POST</td><td><code>/api/stripe/checkout</code></td><td>Create checkout session</td></tr>
+            <tr><td>POST</td><td><code>/api/stripe/portal</code></td><td>Customer billing portal</td></tr>
+            <tr><td>POST</td><td><code>/api/stripe/webhook</code></td><td>Stripe webhook handler</td></tr>
+          </tbody>
+        </table>
+
+        <h3>GraphQL</h3>
+        <p>
+          Available at <code>/graphql</code> in development mode. Supports content queries with personalization and member context.
+        </p>
+        <div class="code-block">
+<span class="comment"># Example query</span>
+{
+  posts(filter: { status: "published", limit: 10 }) {
+    edges {
+      node {
+        title
+        slug
+        excerpt
+        publishedAt
+        author { name }
+        tags { name }
+      }
+    }
+    pageInfo { hasNextPage }
+  }
+}
+        </div>
+
+        <!-- Themes -->
+        <h2 id="themes">Themes</h2>
+        <p>
+          Meridian ships with three built-in content presentation themes. Theme selection is per-publication in the admin dashboard.
+        </p>
+
+        <ul>
+          <li><strong>Editorial</strong> (Default) — Serif headings, generous margins, dark mode preferred. Optimized for long-form writing.</li>
+          <li><strong>Terminal</strong> — Monospace everything, green-on-black, fixed-width 80ch layout. Built for technical writers.</li>
+          <li><strong>Gallery</strong> — Masonry grids, full-bleed images, minimal typography. For visual-heavy publications.</li>
+        </ul>
+
+        <p>
+          Custom themes use a Liquid-inspired template syntax with TypeScript strict mode. See the <a href="#" style="text-decoration:underline;">Theme Development Guide</a> for details.
+        </p>
+
+        <!-- Updating -->
+        <h2 id="updating">Updating Meridian</h2>
+        <p>
+          Pull the latest changes and restart. Migrations run automatically on startup.
+        </p>
+
+        <div class="code-block">
+<span class="comment"># Docker</span>
+<span class="prompt">$</span> git pull origin main
+<span class="prompt">$</span> docker compose up -d --build
+
+<span class="comment"># Local Deno</span>
+<span class="prompt">$</span> git pull origin main
+<span class="prompt">$</span> deno task db:migrate
+<span class="prompt">$</span> deno task dev
+        </div>
+
+        <div class="callout">
+          <p><strong>Backup first:</strong> Always back up your database before updating. <code>pg_dump meridian > backup.sql</code></p>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><span class="nav-logo-mark">M</span> Meridian</a>
+          <p>Zero-fee publishing infrastructure.<br>Open source. Self-hosted. Yours.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#comparison">Compare</a></li>
+            <li><a href="index.html#deploy">Deploy</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#quickstart">Self-Hosting Guide</a></li>
+            <li><a href="#api">API Reference</a></li>
+            <li><a href="#migration">Migration Guide</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="https://github.com/meridian-blog/meridian">GitHub</a></li>
+            <li><a href="#">Discord</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>MIT License. Built with care.</span>
+        <span>Meridian Blog Engine</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile nav toggle
+    document.getElementById('mobileToggle').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+
+    // Active docs nav link on scroll
+    var sections = document.querySelectorAll('.docs-content h2[id]');
+    var navLinks = document.querySelectorAll('.docs-nav a');
+
+    window.addEventListener('scroll', function () {
+      var scrollPos = window.scrollY + 100;
+      sections.forEach(function (section) {
+        if (section.offsetTop <= scrollPos) {
+          navLinks.forEach(function (link) {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + section.id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
