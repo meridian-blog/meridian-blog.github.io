@@ -51,9 +51,7 @@
           <li><a href="#railway">Railway Deploy</a></li>
           <li><a href="#flyio">Fly.io Deploy</a></li>
           <li><a href="#render">Render Deploy</a></li>
-          <li><a href="#migration">Migration</a></li>
           <li><a href="#api">API Reference</a></li>
-          <li><a href="#themes">Themes</a></li>
           <li><a href="#updating">Updating</a></li>
         </ul>
       </aside>
@@ -314,35 +312,6 @@ REDIS_URL=<span class="string">redis://localhost:6379</span>
           <p><strong>Note:</strong> Render's free PostgreSQL tier expires after 90 days. Upgrade to a paid tier for production use.</p>
         </div>
 
-        <!-- Migration -->
-        <h2 id="migration">Migration Guide</h2>
-        <p>
-          Meridian includes one-click importers for major platforms. All migrations preserve your content, tags, and SEO structure.
-        </p>
-
-        <h3>From WordPress</h3>
-        <p>Export your WordPress site as WXR (Tools &rarr; Export &rarr; All content) and import via the admin dashboard or CLI.</p>
-
-        <h3>From Ghost</h3>
-        <p>Use Ghost's JSON export (Settings &rarr; Labs &rarr; Export) and import directly into Meridian.</p>
-
-        <h3>From Substack</h3>
-        <p>Request your data export from Substack settings. Meridian imports posts, subscribers, and can assist with Stripe Connect migration.</p>
-
-        <h3>From Jekyll / RSS</h3>
-        <div class="code-block">
-<span class="comment"># Preview what will be imported</span>
-<span class="prompt">$</span> deno task import:jekyll https://yourblog.com/feed.xml --dry-run
-
-<span class="comment"># Run the import</span>
-<span class="prompt">$</span> deno task import:jekyll https://yourblog.com/feed.xml
-        </div>
-
-        <h3>SEO Redirect Generation</h3>
-        <p>
-          After migration, Meridian auto-generates redirect rules to preserve your search rankings. Download the generated <code>.htaccess</code> or Nginx config from the admin dashboard.
-        </p>
-
         <!-- API -->
         <h2 id="api">API Reference</h2>
         <p>
@@ -418,22 +387,6 @@ REDIS_URL=<span class="string">redis://localhost:6379</span>
 }
         </div>
 
-        <!-- Themes -->
-        <h2 id="themes">Themes</h2>
-        <p>
-          Meridian ships with three built-in content presentation themes. Theme selection is per-publication in the admin dashboard.
-        </p>
-
-        <ul>
-          <li><strong>Editorial</strong> (Default) — Serif headings, generous margins, dark mode preferred. Optimized for long-form writing.</li>
-          <li><strong>Terminal</strong> — Monospace everything, green-on-black, fixed-width 80ch layout. Built for technical writers.</li>
-          <li><strong>Gallery</strong> — Masonry grids, full-bleed images, minimal typography. For visual-heavy publications.</li>
-        </ul>
-
-        <p>
-          Custom themes use a Liquid-inspired template syntax with TypeScript strict mode. See the <a href="#" style="text-decoration:underline;">Theme Development Guide</a> for details.
-        </p>
-
         <!-- Updating -->
         <h2 id="updating">Updating Meridian</h2>
         <p>
@@ -481,7 +434,6 @@ REDIS_URL=<span class="string">redis://localhost:6379</span>
           <ul>
             <li><a href="#quickstart">Self-Hosting Guide</a></li>
             <li><a href="#api">API Reference</a></li>
-            <li><a href="#migration">Migration Guide</a></li>
             <li><a href="#">Changelog</a></li>
           </ul>
         </div>
