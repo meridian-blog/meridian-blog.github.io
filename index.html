@@ -44,7 +44,7 @@
         <p class="hero-label">Open Source Publishing Platform</p>
         <h1 class="hero-title">Publish on your terms.<br>Keep every dollar.</h1>
         <p class="hero-subtitle">
-          Meridian is a self-hosted blog engine with memberships, newsletters, and growth tools built in. Zero platform fees. No vendor lock-in. Just your words, your audience, your revenue.
+          Meridian is a self-hosted blog engine with memberships and newsletters built in. Zero platform fees. No vendor lock-in. Just your words, your audience, your revenue.
         </p>
         <div class="hero-actions">
           <a href="#deploy" class="btn btn-primary">Deploy Now</a>
@@ -56,16 +56,12 @@
             <span class="hero-meta-label">Platform Fee</span>
           </div>
           <div class="hero-meta-item">
-            <span class="hero-meta-value">&lt;0.6s</span>
-            <span class="hero-meta-label">Median Load</span>
-          </div>
-          <div class="hero-meta-item">
             <span class="hero-meta-value">AGPLv3</span>
             <span class="hero-meta-label">License</span>
           </div>
           <div class="hero-meta-item">
-            <span class="hero-meta-value">150KB</span>
-            <span class="hero-meta-label">Core Payload</span>
+            <span class="hero-meta-value">Deno 2</span>
+            <span class="hero-meta-label">Runtime</span>
           </div>
         </div>
       </div>
@@ -79,29 +75,6 @@
     </div>
   </section>
 
-  <!-- ===== Stats Bar ===== -->
-  <section class="stats-bar">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-value">100%</span>
-          <span class="stat-label">Revenue Retained</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value">&lt;100ms</span>
-          <span class="stat-label">Edge TTFB</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value">Deno 2</span>
-          <span class="stat-label">Runtime</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value">98%+</span>
-          <span class="stat-label">Email Deliverability</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== Features ===== -->
   <section id="features">
@@ -111,16 +84,16 @@
       <div class="container grid-golden">
         <div>
           <p class="feature-label">Publishing</p>
-          <h2 class="feature-title">A writing environment that disappears</h2>
+          <h2 class="feature-title">Write, publish, done</h2>
           <p class="feature-desc">
-            Block-based editor with real-time collaboration, version history, and an AI refinement panel. Write in "Void" mode for distraction-free composing — all chrome fades, leaving only your words.
+            A block-based editor that stores content as structured JSON. Create posts and static pages, organize with tags, and publish instantly.
           </p>
           <ul class="feature-list">
-            <li>Block-based content stored as structured JSON</li>
-            <li>Drag-and-drop contextual paywalls</li>
-            <li>Git-like version control with visual diff</li>
-            <li>Inline toolbar on text selection</li>
-            <li>Slash commands for block insertion</li>
+            <li>Block-based content (text, headings, quotes, code, dividers)</li>
+            <li>Posts and static pages</li>
+            <li>Tag organization with post counts</li>
+            <li>Full-text search across all content</li>
+            <li>RSS feed out of the box</li>
           </ul>
         </div>
         <div class="image-placeholder" data-label="Editor Interface"></div>
@@ -153,61 +126,18 @@
       <div class="container grid-golden">
         <div>
           <p class="feature-label">Newsletters</p>
-          <h2 class="feature-title">Send to your audience, not through a middleman</h2>
+          <h2 class="feature-title">Send to your audience directly</h2>
           <p class="feature-desc">
-            Built-in newsletter engine with visual automation workflows, segment targeting, and deliverability optimization. BIMI/DMARC/DKIM enforcement out of the box.
+            Compose newsletters in the admin dashboard and send to your subscribers via Resend. Members can subscribe through a public signup form on your blog.
           </p>
           <ul class="feature-list">
-            <li>Visual workflow builder for automations</li>
-            <li>Welcome sequences, win-back campaigns</li>
-            <li>Dedicated IP warming automation</li>
-            <li>Gmail/Yahoo 2024 compliance built-in</li>
-            <li>Send via Resend, Postmark, or any provider</li>
+            <li>Compose and send newsletters from the dashboard</li>
+            <li>Public subscriber signup form</li>
+            <li>Send via Resend integration</li>
+            <li>Logs to console in development (no email config needed)</li>
           </ul>
         </div>
         <div class="image-placeholder" data-label="Newsletter Composer"></div>
-      </div>
-    </div>
-
-    <!-- Feature 4: Growth -->
-    <div class="feature-block">
-      <div class="container grid-golden-reverse">
-        <div class="image-placeholder" data-label="Referral Dashboard"></div>
-        <div>
-          <p class="feature-label">Growth Tools</p>
-          <h2 class="feature-title">Native referral and viral infrastructure</h2>
-          <p class="feature-desc">
-            Tiered referral programs, embeddable subscribe buttons, social proof badges, and one-click subscribe endpoints. Growth tooling that rivals Beehiiv — self-hosted.
-          </p>
-          <ul class="feature-list">
-            <li>Tiered and milestone-based referral rewards</li>
-            <li>Embeddable buttons and web components</li>
-            <li>Live subscriber count badges</li>
-            <li>UTM + cookie attribution tracking</li>
-            <li>AI-powered content resurrection for SEO</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Feature 5: Analytics -->
-    <div class="feature-block">
-      <div class="container grid-golden">
-        <div>
-          <p class="feature-label">Analytics</p>
-          <h2 class="feature-title">Privacy-first insights, not surveillance</h2>
-          <p class="feature-desc">
-            First-party analytics with churn prediction, LTV forecasting, and content velocity metrics. No Google Analytics dependency. Your data stays on your infrastructure.
-          </p>
-          <ul class="feature-list">
-            <li>Real-time dashboard with sparklines</li>
-            <li>30-day churn prediction ML model</li>
-            <li>Cohort-based LTV forecasting</li>
-            <li>Anonymized peer benchmarking</li>
-            <li>SQL interface for custom reports</li>
-          </ul>
-        </div>
-        <div class="image-placeholder" data-label="Analytics Dashboard"></div>
       </div>
     </div>
 
@@ -253,39 +183,11 @@
               <td>Plugin required</td>
             </tr>
             <tr>
-              <td>Referral Program</td>
-              <td class="highlight"><span class="check">Built-in</span></td>
-              <td><span class="cross">No</span></td>
-              <td><span class="cross">No</span></td>
-              <td>Plugin required</td>
-            </tr>
-            <tr>
               <td>Payments</td>
               <td class="highlight"><span class="check">Stripe (0% platform fee)</span></td>
               <td>Stripe only</td>
               <td>Stripe (10% fee)</td>
               <td>Plugin required</td>
-            </tr>
-            <tr>
-              <td>AI Content Tools</td>
-              <td class="highlight"><span class="check">Native</span></td>
-              <td><span class="cross">No</span></td>
-              <td><span class="cross">No</span></td>
-              <td>Plugin required</td>
-            </tr>
-            <tr>
-              <td>Edge-First Performance</td>
-              <td class="highlight"><span class="check">&lt;100ms TTFB</span></td>
-              <td>Varies</td>
-              <td>Varies</td>
-              <td>Slow by default</td>
-            </tr>
-            <tr>
-              <td>Core Payload</td>
-              <td class="highlight"><span class="check">&lt;150KB</span></td>
-              <td>~300KB</td>
-              <td>~1MB+</td>
-              <td>Varies widely</td>
             </tr>
             <tr>
               <td>Open Source</td>
@@ -395,36 +297,6 @@
     </div>
   </section>
 
-  <!-- ===== Testimonials (Placeholder) ===== -->
-  <section class="testimonial">
-    <div class="container">
-      <p class="feature-label" style="text-align:center;margin-bottom:var(--space-lg);">What creators say</p>
-      <div class="testimonial-grid">
-        <div class="testimonial-card">
-          <blockquote>"Switching from Substack saved us $2,400/month in platform fees. Meridian paid for itself before we finished the migration."</blockquote>
-          <cite>
-            <div class="cite-avatar"></div>
-            <span>Placeholder Name, Publication</span>
-          </cite>
-        </div>
-        <div class="testimonial-card">
-          <blockquote>"The referral system alone doubled our subscriber growth in three months. And it's all self-hosted — no data leaves our servers."</blockquote>
-          <cite>
-            <div class="cite-avatar"></div>
-            <span>Placeholder Name, Publication</span>
-          </cite>
-        </div>
-        <div class="testimonial-card">
-          <blockquote>"Finally, a publishing platform that treats performance as a feature, not an afterthought. Sub-100ms pages, globally."</blockquote>
-          <cite>
-            <div class="cite-avatar"></div>
-            <span>Placeholder Name, Publication</span>
-          </cite>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== Pricing (Self-Hosted = Free) ===== -->
   <section class="section">
     <div class="container">
@@ -442,10 +314,9 @@
           <ul class="pricing-features">
             <li>Unlimited posts and pages</li>
             <li>Unlimited members</li>
-            <li>Newsletters and automations</li>
-            <li>Referral and growth tools</li>
+            <li>Newsletter sending via Resend</li>
             <li>Stripe payments integration</li>
-            <li>Full API and GraphQL access</li>
+            <li>REST API and GraphQL</li>
             <li>Community support</li>
           </ul>
           <a href="docs.html" class="btn btn-primary">Get Started</a>
